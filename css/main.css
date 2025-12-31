@@ -1,0 +1,261 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f2f2f2;
+  font-family: 'Inter', sans-serif;
+}
+
+/* GRAIN */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.08;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  gap: 32px;
+  z-index: 10;
+}
+
+.nav a {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-decoration: none;
+  color: #f2f2f2;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #ff1a1a;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(139,0,0,0.25), #000 70%);
+  animation: slowPulse 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes slowPulse {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 0.75; }
+}
+
+.hero h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  letter-spacing: 0.2em;
+  line-height: 0.95;
+}
+
+.hero-sub {
+  margin-top: 1.5rem;
+  color: #8b0000;
+  letter-spacing: 0.5em;
+  font-size: 0.7rem;
+}
+
+/* SECTIONS */
+section {
+  padding: 20vh 10vw;
+}
+
+/* MANIFESTO */
+.manifesto p {
+  max-width: 720px;
+  font-size: 1.25rem;
+  line-height: 1.9;
+}
+
+/* FEATURED ARTIST */
+.featured h2,
+.latest-release h2 {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 0.35em;
+  margin-bottom: 6vh;
+}
+
+/* FEATURED CARD */
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.featured-image {
+  position: relative;
+  height: 460px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.featured-image.scarlzx {
+  background-image: url("../assets/images/scarlzx-profile.jpg");
+}
+
+
+
+/* FEATURED INFO */
+.featured-info h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.5rem;
+  letter-spacing: 0.25em;
+}
+
+.featured-info p {
+  margin: 1.2rem 0 2.5rem;
+  color: #8b0000;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+}
+
+.featured-info a {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-decoration: none;
+  color: #f2f2f2;
+  border-bottom: 1px solid #8b0000;
+  padding-bottom: 6px;
+}
+
+/* LATEST RELEASE */
+.release-card {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.release-cover {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.release-cover.sic-em {
+  background-image: url("../assets/images/sic-em-cover.jpg");
+}
+
+.release-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* RELEASE INFO */
+.release-info h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.25em;
+}
+
+.release-artist {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: #8b0000;
+}
+
+.release-info p {
+  margin: 1rem 0 2rem;
+  letter-spacing: 0.25em;
+  font-size: 0.7rem;
+}
+
+.release-info a {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-decoration: none;
+  color: #f2f2f2;
+  border-bottom: 1px solid #8b0000;
+}
+
+/* FOOTER */
+footer {
+  padding: 10vh 10vw;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: #444;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* HERO ENTRANCE ANIMATION */
+.hero-title span {
+  display: block;
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.hero-sub {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ACTIVE STATE (triggered after loader) */
+.site-loaded .hero-title span {
+  animation: titleReveal 1.4s ease forwards;
+}
+
+.site-loaded .hero-title span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.site-loaded .hero-sub {
+  animation: subReveal 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes titleReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f2f2f2;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-logo {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.2em;
+  color: #8b0000;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.98);
+    text-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 30px rgba(255, 26, 26, 0.6);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.98);
+    text-shadow: none;
+  }
+}
+
+.hidden {
+  display: none;
+}
