@@ -1,13 +1,13 @@
 window.addEventListener('load', () => {
-    // 1. Obsługa Preloadera
+
     const loader = document.querySelector('.loader-wrapper');
     
-    // Symulacja lekkiego opóźnienia dla efektu napięcia
+   
     setTimeout(() => {
         loader.style.transform = 'translateY(-100%)';
     }, 1500);
 
-    // 2. Scroll Animations (Intersection Observer)
+  
     const observerOptions = {
         threshold: 0.1
     };
@@ -26,7 +26,7 @@ window.addEventListener('load', () => {
     });
 });
 
-// 3. Opcjonalnie: Smooth Scroll dla linków
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -34,4 +34,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: 'smooth'
         });
     });
+
 });
