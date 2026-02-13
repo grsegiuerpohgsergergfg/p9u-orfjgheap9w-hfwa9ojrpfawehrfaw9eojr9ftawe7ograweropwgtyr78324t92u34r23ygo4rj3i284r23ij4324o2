@@ -1,0 +1,344 @@
+
+:root {
+    --bg-color: #050505;
+    --text-color: #e0e0e0;
+    --accent-color: #ff0000; 
+    --font-main: 'Times New Roman', serif; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    cursor: crosshair; 
+}
+
+/* --- NOISE EFFECT --- */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.08;
+    z-index: 999;
+}
+
+/* --- PRELOADER --- */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.loader-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    letter-spacing: 5px;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- HERO & GLITCH --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+h1.glitch {
+    font-size: 12vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    color: white;
+    letter-spacing: -5px;
+}
+
+
+h1.glitch::before, h1.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+}
+
+h1.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+h1.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00ffff;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 30px, 0); }
+    20% { clip: rect(80px, 9999px, 100px, 0); }
+    40% { clip: rect(10px, 9999px, 80px, 0); }
+    100% { clip: rect(50px, 9999px, 90px, 0); }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    letter-spacing: 10px;
+    margin-top: -20px;
+}
+
+
+.content-section {
+    padding: 100px 20px;
+    border-top: 1px solid #333;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+
+.release-card {
+    border: 1px solid #333;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    background: #0a0a0a;
+}
+
+.cover-art {
+    width: 100%;
+    height: 300px;
+    background-color: #1a1a1a;
+    background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5YnZ5YnZ5YnZ5YnZ5YnZ5YnZ5YnZ5YnZ5YnZ5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7TKTd8t9c7q9f1E4/giphy.gif'); /* Placeholder GIF */
+    background-size: cover;
+    background-blend-mode: multiply;
+    margin-bottom: 20px;
+    filter: grayscale(100%) contrast(120%);
+    transition: filter 0.3s;
+}
+
+.release-card:hover .cover-art {
+    filter: grayscale(0%) contrast(100%) drop-shadow(0 0 10px var(--accent-color));
+}
+
+.btn-listen {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-listen:hover {
+    background: var(--accent-color);
+    color: black;
+}
+
+/* --- ARTIST LIST --- */
+.artist-list {
+    list-style: none;
+    text-align: center;
+}
+
+.artist-name {
+    font-size: 4rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+}
+
+.artist-name:hover {
+    color: var(--accent-color);
+    -webkit-text-stroke: 0px;
+    transform: scale(1.1) skewX(-10deg);
+    text-shadow: 4px 4px 0px rgba(255,0,0,0.5);
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    mix-blend-mode: difference; 
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+footer {
+    width: 100%;
+    padding: 30px 0;      
+    text-align: center;   
+    background: transparent; 
+    
+
+}
+
+.copyright {
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    font-size: 10px;     
+    color: #666666;       
+    letter-spacing: 0.2em; 
+    text-transform: uppercase; 
+    opacity: 0.7;
+}
+
+/* --- MANIFESTO SECTION --- */
+.manifesto {
+    padding: 150px 20px;
+    text-align: center;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manifesto-text {
+    max-width: 800px;
+}
+
+.manifesto-line {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.manifesto-separator {
+    width: 40px;
+    height: 1px;
+    background-color: var(--accent-color); 
+    margin: 40px auto;
+}
+
+.emphasis {
+    font-weight: bold;
+    color: var(--accent-color); 
+    letter-spacing: 0.3em;
+}
+
+
+@media (max-width: 768px) {
+    .manifesto-line {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+    }
+}
+/* --- MANIFESTO SECTION --- */
+.manifesto {
+    padding: 150px 20px;
+    text-align: center;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manifesto-text {
+    max-width: 800px;
+}
+
+.manifesto-line {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.manifesto-separator {
+    width: 40px;
+    height: 1px;
+    background-color: var(--accent-color); 
+    margin: 40px auto;
+}
+
+.emphasis {
+    font-weight: bold;
+    color: var(--accent-color); 
+    letter-spacing: 0.3em;
+}
+
+
+@media (max-width: 768px) {
+    .manifesto-line {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+
+
